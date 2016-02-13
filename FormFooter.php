@@ -16,6 +16,11 @@ class FormFooter extends Widget
 {
     public $model;
 
+    public function init()
+    {
+        $this->registerTranslations();
+    }
+
     public function run()
     {
         parent::run();
