@@ -46,12 +46,12 @@ class FormFooter extends Widget
         if($this->model->hasAttribute($this->model->createdAtAttribute))
             $create = self::t('messages', 'Created').': '.
                 \Yii::$app->formatter->asDatetime(
-                    $this->model->{$this->model->createdAtAttribute});
+                    $this->model->{$this->model->createdAtAttribute}, 'short');
 
         if($this->model->hasAttribute($this->model->updatedAtAttribute))
             $update = self::t('messages', 'Updated').': '.
                 \Yii::$app->formatter->asDatetime(
-                    $this->model->{$this->model->updatedAtAttribute});
+                    $this->model->{$this->model->updatedAtAttribute}, 'short');
 
         return strtr('{create}<br/>{update}', ['{create}'=>$create, '{update}'=>$update]);
     }
