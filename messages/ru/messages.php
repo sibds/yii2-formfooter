@@ -9,4 +9,6 @@ return [
     'Create' => 'Создать',
     'Update' => 'Сохранить',
     'Update and close' => 'Сохранить и закрыть',
+    'Created' => 'Cоздано',
+    'Updated' => 'Изменено',
 ];
