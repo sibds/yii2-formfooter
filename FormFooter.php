@@ -33,10 +33,10 @@ class FormFooter extends Widget
             $this->model->isNewRecord ? self::t('messages', 'Create') : self::t('messages', 'Update'),
             ['class' => $this->model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
 
-        $content .= Html::a($this->model->isNewRecord ?
-            self::t('messages', 'Create and close') :
-            self::t('messages', 'Update and close'),
-            '#', ['onclick'=>'alert("Work"); return false;']);
+        $content .= ' ' . Html::a($this->model->isNewRecord ?
+                self::t('messages', 'Create and close') :
+                self::t('messages', 'Update and close'),
+                '#', [/*'class' => 'btn btn-default btn-xs',*/ 'onclick'=>'alert("Work"); return false;']);
 
         $content = Html::tag('div', $content, ['class'=>'col-sm-6']).
             Html::tag('div', $this->getInfoRecord(), ['class'=>'col-sm-6 text-right']);

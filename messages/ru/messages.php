@@ -8,6 +8,7 @@
 return [
     'Create' => 'Создать',
     'Update' => 'Сохранить',
+    'Close' => 'Закрыть',
     'Create and close' => 'Создать и закрыть',
     'Update and close' => 'Сохранить и закрыть',
     'Created' => 'Cоздано',
