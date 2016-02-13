@@ -1,0 +1,21 @@
+{
+    "name": "sibds/yii2-formfooter",
+    "description": "Form footer for Yii2",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vadim Mazur",
+            "email": "mazurva@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "sibds\\form\\": ""
+        }
+    }
+}
