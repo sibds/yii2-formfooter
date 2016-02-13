@@ -33,6 +33,11 @@ class FormFooter extends Widget
             $this->model->isNewRecord ? self::t('messages', 'Create') : self::t('messages', 'Update'),
             ['class' => $this->model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
 
+        $content .= Html::a($this->model->isNewRecord ?
+            self::t('messages', 'Create and close') :
+            self::t('messages', 'Update and close'),
+            '#', ['onclick'=>'alert("Work"); return false;']);
+
         $content = Html::tag('div', $content, ['class'=>'col-sm-6']).
             Html::tag('div', $this->getInfoRecord(), ['class'=>'col-sm-6 text-right']);
 
@@ -40,20 +45,20 @@ class FormFooter extends Widget
     }
 
     private function getInfoRecord(){
-        $create = '';
-        $update = '';
+        $created = '';
+        $updated = '';
 
         if($this->model->hasAttribute($this->model->createdAtAttribute))
-            $create = self::t('messages', 'Created').': '.
+            $created = self::t('messages', 'Created').': '.
                 \Yii::$app->formatter->asDatetime(
                     $this->model->{$this->model->createdAtAttribute}, 'short');
 
         if($this->model->hasAttribute($this->model->updatedAtAttribute))
-            $update = self::t('messages', 'Updated').': '.
+            $updated = self::t('messages', 'Updated').': '.
                 \Yii::$app->formatter->asDatetime(
                     $this->model->{$this->model->updatedAtAttribute}, 'short');
 
-        return strtr('{create}<br/>{update}', ['{create}'=>$create, '{update}'=>$update]);
+        return strtr('{created}<br/>{updated}', ['{created}'=>$created, '{updated}'=>$updated]);
     }
 
     public function registerTranslations()
