@@ -35,7 +35,7 @@ class FormFooter extends Widget
             'sourceLanguage' => 'en-US',
             'basePath' => '@vendor/sibds/yii2-formfooter/messages',
             'fileMap' => [
-                'sibds/grid/messages' => 'messages.php',
+                'sibds/form/messages' => 'messages.php',
             ],
         ];
     }
