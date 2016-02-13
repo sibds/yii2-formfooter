@@ -49,7 +49,7 @@ class FormFooter extends Widget
         if($this->model->hasAttribute($this->model->updatedAtAttribute))
             $update = self::t('messages', 'Updated').': '.\Yii::$app->formatter->asDatetime($this->model->{$this->model->updatedAtAttribute});
 
-        return strtr('{create}{update}', ['create'=>$create, 'update'=>$update]);
+        return strtr('{create}<br/>{update}', ['{create}'=>$create, '{update}'=>$update]);
     }
 
     public function registerTranslations()
