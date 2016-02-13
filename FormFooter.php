@@ -21,9 +21,27 @@ class FormFooter extends Widget
         parent::run();
 
         $content = Html::submitButton(
-            $this->model->isNewRecord ? 'Create' : 'Update',
+            $this->model->isNewRecord ? self::t('messages', 'Create') : self::t('messages', 'Update'),
             ['class' => $this->model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
 
         return Html::tag('div', $content, ['class'=>'form-group']);
+    }
+
+    public function registerTranslations()
+    {
+        $i18n = \Yii::$app->i18n;
+        $i18n->translations['sibds/form/*'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'en-US',
+            'basePath' => '@vendor/sibds/yii2-gridhelper/messages',
+            'fileMap' => [
+                'sibds/grid/messages' => 'messages.php',
+            ],
+        ];
+    }
+
+    public static function t($category, $message, $params = [], $language = null)
+    {
+        return \Yii::t('sibds/form/' . $category, $message, $params, $language);
     }
 }
