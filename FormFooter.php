@@ -24,7 +24,7 @@ class FormFooter extends Widget
             $this->model->isNewRecord ? self::t('messages', 'Create') : self::t('messages', 'Update'),
             ['class' => $this->model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
 
-        return Html::tag('div', $content, ['class'=>'form-group']);
+        return Html::tag('div', $content, ['class'=>'form-group well']);
     }
 
     public function registerTranslations()
@@ -33,7 +33,7 @@ class FormFooter extends Widget
         $i18n->translations['sibds/form/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
-            'basePath' => '@vendor/sibds/yii2-gridhelper/messages',
+            'basePath' => '@vendor/sibds/yii2-formfooter/messages',
             'fileMap' => [
                 'sibds/grid/messages' => 'messages.php',
             ],
