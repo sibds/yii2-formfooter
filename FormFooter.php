@@ -34,7 +34,7 @@ class FormFooter extends Widget
             ['class' => $this->model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
 
         $content = Html::tag('div', $content, ['class'=>'col-sm-6']).
-            Html::tag('div', $this->getInfoRecord(), ['class'=>'col-sm-6']);
+            Html::tag('div', $this->getInfoRecord(), ['class'=>'col-sm-6 text-right']);
 
         return Html::tag('div', $content, ['class'=>'form-group well row']);
     }
@@ -44,10 +44,14 @@ class FormFooter extends Widget
         $update = '';
 
         if($this->model->hasAttribute($this->model->createdAtAttribute))
-            $create = self::t('messages', 'Created').': '.\Yii::$app->formatter->asDatetime($this->model->{$this->model->createdAtAttribute});
+            $create = self::t('messages', 'Created').': '.
+                \Yii::$app->formatter->asDatetime(
+                    $this->model->{$this->model->createdAtAttribute});
 
         if($this->model->hasAttribute($this->model->updatedAtAttribute))
-            $update = self::t('messages', 'Updated').': '.\Yii::$app->formatter->asDatetime($this->model->{$this->model->updatedAtAttribute});
+            $update = self::t('messages', 'Updated').': '.
+                \Yii::$app->formatter->asDatetime(
+                    $this->model->{$this->model->updatedAtAttribute});
 
         return strtr('{create}<br/>{update}', ['{create}'=>$create, '{update}'=>$update]);
     }
