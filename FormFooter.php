@@ -46,7 +46,7 @@ JS;
                 self::t('messages', 'Update and close'),
                 '#', ['class' => 'btn btn-default btn-sm', 'onclick'=>$jsCreateClose]);
 
-        $content .= ' ' . Html::a(self::t('messages', 'Close'), ['index'],
+        $content .= ' ' . Html::a(self::t('messages', 'Close'), [\Yii::$app->controller->defaultAction],
                 ['class' => 'btn btn-default btn-sm']);
 
         $content = Html::tag('div', $content, ['class'=>'col-sm-6']).
