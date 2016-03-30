@@ -46,7 +46,15 @@ JS;
                 self::t('messages', 'Update and close'),
                 '#', ['class' => 'btn btn-default btn-sm', 'onclick'=>$jsCreateClose]);
 
-        $content .= ' ' . Html::a(self::t('messages', 'Close'), [\Yii::$app->controller->defaultAction],
+        $returnUrl = null;
+        
+        if(\Yii::$app->controller->defaultAction===null){
+            $returnUrl = \Yii::$app->user->returnUrl;
+        }else{
+            $returnUrl = [\Yii::$app->controller->defaultAction];
+        }
+
+        $content .= ' ' . Html::a(self::t('messages', 'Close'), $returnUrl,
                 ['class' => 'btn btn-default btn-sm']);
 
         $content = Html::tag('div', $content, ['class'=>'col-sm-6']).
