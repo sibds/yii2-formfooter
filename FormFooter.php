@@ -57,8 +57,8 @@ JS;
         $content .= ' ' . Html::a(self::t('messages', 'Close'), $returnUrl,
                 ['class' => 'btn btn-default btn-sm']);
 
-        $content = Html::tag('div', $content, ['class'=>'col-sm-6']).
-            Html::tag('div', $this->getInfoRecord(), ['class'=>'col-sm-6 text-right']);
+        $content = Html::tag('div', $content, ['class'=>'col-sm-8']).
+            Html::tag('div', $this->getInfoRecord(), ['class'=>'col-sm-4 text-right']);
 
         return Html::tag('div', $content, ['class'=>'form-group well row']);
     }
