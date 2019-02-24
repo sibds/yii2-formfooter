@@ -12,6 +12,7 @@ namespace sibds\form;
 use sibds\components\ActiveRecord;
 use yii\bootstrap\Html;
 use yii\bootstrap\Widget;
+use yii2mod\alert\AlertAsset;
 
 class FormFooter extends Widget
 {
