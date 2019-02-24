@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "*",        
+        "yii2mod/yii2-sweet-alert": "*"
     },
     "autoload": {
         "psr-4": {
