@@ -19,6 +19,8 @@ class FormFooter extends Widget
      * @var ActiveRecord
      */
     public $model;
+    
+    public $removed = false;
 
     public function init()
     {
@@ -56,6 +58,17 @@ JS;
 
         $content .= ' ' . Html::a(self::t('messages', 'Close'), $returnUrl,
                 ['class' => 'btn btn-default btn-sm']);
+        
+        if($this->removed&&!$this->model->isNewRecord){
+            $content .= ' ' . Html::a(self::t('messages', 'Delete'), ['delete', 'id' => $this->model->id], [
+                    'class' => 'btn btn-danger btn-sm pull-right',
+                    'data' => [
+                        'confirm' => self::t('messages', 'Are you sure you want to delete this item?'),
+                        'method' => 'post',
+                        'pjax' => '0',
+                    ],
+                ]);
+        }
 
         $content = Html::tag('div', $content, ['class'=>'col-sm-8']).
             Html::tag('div', $this->getInfoRecord(), ['class'=>'col-sm-4 text-right']);
