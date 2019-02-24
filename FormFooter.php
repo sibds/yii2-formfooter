@@ -60,6 +60,21 @@ JS;
                 ['class' => 'btn btn-default btn-sm']);
         
         if($this->removed&&!$this->model->isNewRecord){
+            AlertAsset::register($this->view);
+            $this->view->registerJs("            
+            yii.confirm = function (message, okCallback, cancelCallback) {
+                swal({
+                    title: message,
+                    type: 'warning',
+                    showCancelButton: true,
+                    closeOnConfirm: true,
+                    allowOutsideClick: true,
+                    cancelButtonText: 'Отмена',
+                    confirmButtonText: 'Да',
+                    confirmButtonColor: '#c9302c'
+                }, okCallback);
+            };
+            ");
             $content .= ' ' . Html::a(self::t('messages', 'Delete'), ['delete', 'id' => $this->model->id], [
                     'class' => 'btn btn-danger btn-sm pull-right',
                     'data' => [
