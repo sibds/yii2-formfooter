@@ -123,7 +123,7 @@ JS;
     private function getAuthor($id){
         $user = User::findOne($id);
         if($user){
-            return Html::a($user->username, ['/user/admin/update', 'id'=>$id]).' ';
+            return Html::a($user->username, ['/user/admin/update', 'id'=>$id]).', ';
         }
         return '';
     }
