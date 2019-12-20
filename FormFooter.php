@@ -9,19 +9,24 @@
 namespace sibds\form;
 
 
+use Da\User\Model\User;
 use sibds\components\ActiveRecord;
-use yii\bootstrap\Html;
-use yii\bootstrap\Widget;
-use yii2mod\alert\AlertAsset;
+use yii\bootstrap4\Html;
+use yii\bootstrap4\Widget;
+use dominus77\sweetalert2\assets\SweetAlert2Asset;
 
 class FormFooter extends Widget
 {
+    public const CARD = 0;
+    public const CARD_FOOTER = 1;
     /**
      * @var ActiveRecord
      */
     public $model;
     
     public $removed = false;
+
+    public $type = self::CARD;
 
     public function init()
     {
@@ -61,7 +66,7 @@ JS;
                 ['class' => 'btn btn-default btn-sm']);
         
         if($this->removed&&!$this->model->isNewRecord){
-            AlertAsset::register($this->view);
+            SweetAlert2Asset::register($this->view);
             $this->view->registerJs("            
             yii.confirm = function (message, okCallback, cancelCallback) {
                 swal({
@@ -89,7 +94,13 @@ JS;
         $content = Html::tag('div', $content, ['class'=>'col-sm-8']).
             Html::tag('div', $this->getInfoRecord(), ['class'=>'col-sm-4 text-right']);
 
-        return Html::tag('div', $content, ['class'=>'form-group well row']);
+        if($this->type == self::CARD){
+            return Html::tag('div', Html::tag('div', $content, ['class'=>'card-body row']), [
+                'class'=>'card card-primary'
+            ]);
+        } else {
+            return Html::tag('div', $content, ['class'=>'card-footer row']);
+        }
     }
 
     private function getInfoRecord(){
@@ -97,16 +108,24 @@ JS;
         $updated = '';
 
         if($this->model->hasAttribute($this->model->createdAtAttribute))
-            $created = self::t('messages', 'Created').': '.
+            $created = self::t('messages', 'Created').': '.$this->getAuthor($this->model->{$this->model->createdByAttribute}).
                 \Yii::$app->formatter->asDatetime(
                     $this->model->{$this->model->createdAtAttribute}, 'short');
 
         if($this->model->hasAttribute($this->model->updatedAtAttribute))
-            $updated = self::t('messages', 'Updated').': '.
+            $updated = self::t('messages', 'Updated').': '.$this->getAuthor($this->model->{$this->model->updatedByAttribute}).
                 \Yii::$app->formatter->asDatetime(
                     $this->model->{$this->model->updatedAtAttribute}, 'short');
 
         return strtr('{created}<br/>{updated}', ['{created}'=>$created, '{updated}'=>$updated]);
+    }
+
+    private function getAuthor($id){
+        $user = User::findOne($id);
+        if($user){
+            return Html::a($user->username, ['/user/admin/update', 'id'=>$id]).' ';
+        }
+        return '';
     }
 
     public function registerTranslations()
