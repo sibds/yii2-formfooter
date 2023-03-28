@@ -11,8 +11,8 @@ namespace sibds\form;
 
 use Da\User\Model\User;
 use sibds\components\ActiveRecord;
-use yii\bootstrap4\Html;
-use yii\bootstrap4\Widget;
+use yii\bootstrap5\Html;
+use yii\bootstrap5\Widget;
 use dominus77\sweetalert2\assets\SweetAlert2Asset;
 
 class FormFooter extends Widget
